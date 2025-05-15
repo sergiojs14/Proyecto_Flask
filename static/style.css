@@ -1,0 +1,44 @@
+/* Reset sencillo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  background: #f4f4f4;
+  color: #333;
+  padding: 20px;
+}
+
+header {
+  background: #005f73;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+header nav a {
+  color: #fff;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.logo {
+  width: 10cm; 
+  max-width: 10cm; 
+  height: auto; 
+}
+
+.logo:hover {
+  transform: scale(1.10); 
+}
