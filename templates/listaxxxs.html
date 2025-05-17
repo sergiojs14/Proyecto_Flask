@@ -4,13 +4,33 @@
 
 {% block content %}
   <h2>Resultados de búsqueda</h2>
+
   {% if resultados %}
-    <ul>
-      {% for mision in resultados %}
-        <li><strong>{{ mision.nombreMision }}</strong> - Lanzamiento: {{ mision.fechaLanzamiento }}</li>
-      {% endfor %}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre de la misión</th>
+          <th>Fecha de lanzamiento</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mision in resultados %}
+          <tr>
+            <td>{{ mision.nombreMision }}</td>
+            <td>{{ mision.fechaLanzamiento }}</td>
+            <td>
+              <a href="{{ url_for('detalle_por_path', id_mision=mision.idMision) }}">
+                Detalle
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% else %}
-    <p>No se encontraron misiones con ese nombre.</p>
+    <p>No se encontraron misiones que empiecen con esa cadena.</p>
   {% endif %}
+
+  <p><a href="{{ url_for('xxxs') }}">&larr; Volver a buscar</a></p>
 {% endblock %}

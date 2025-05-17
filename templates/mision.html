@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ mision.nombreMision }}{% endblock %}
+
+{% block content %}
+  <h2>{{ mision.nombreMision }}</h2>
+  <ul>
+    <li><strong>ID:</strong> {{ mision.idMision }}</li>
+    <li><strong>Fecha de lanzamiento:</strong> {{ mision.fechaLanzamiento }}</li>
+    <li><strong>Duración (días):</strong> {{ mision.duracionDias }}</li>
+    <li><strong>Distancia (años luz):</strong> {{ mision.distanciaAniosLuz }}</li>
+    <li><strong>Presupuesto (USD):</strong> ${{ '%.2f'|format(mision.presupuestoUSD) }}</li>
+    <li><strong>Tripulada:</strong> {{ 'Sí' if mision.esTripulada else 'No' }}</li>
+    <li><strong>Próximo aterrizaje:</strong> {{ mision.proximoAterrizaje or 'N/A' }}</li>
+    <li><strong>Telemetría Binaria:</strong> {{ mision.telemetriaBinaria }}</li>
+    <li><strong>Log Comandos Regex:</strong> {{ mision.logComandosRegex }}</li>
+    <li><strong>Último Latido:</strong> {{ mision.ultimoLatido }}</li>
+    <li><strong>Campo MinKey:</strong> {{ mision.campoMinKey }}</li>
+    <li><strong>Campo MaxKey:</strong> {{ mision.campoMaxKey }}</li>
+  </ul>
+
+  <h3>Coordenadas de Trayectoria</h3>
+  <ul>
+    {% for punto in mision.coordenadasTrayectoria %}
+      <li>X: {{ punto.x }}, Y: {{ punto.y }}, Z: {{ punto.z }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Carga Útil</h3>
+  <ul>
+    <li><strong>Tipo:</strong> {{ mision.cargaUtil.tipo }}</li>
+    <li><strong>Modelo:</strong> {{ mision.cargaUtil.modelo }}</li>
+    <li><strong>Número de Serie:</strong> {{ mision.cargaUtil.numeroSerie }}</li>
+  </ul>
+
+  <p><a href="{{ url_for('xxxs') }}">&larr; Volver a buscar</a></p>
+{% endblock %}

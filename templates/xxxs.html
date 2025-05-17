@@ -3,12 +3,16 @@
 {% block title %}/xxxs{% endblock %}
 
 {% block content %}
-  <h2>Bienvenido a la ruta /xxxs</h2>
-  <p>Esta es una página de ejemplo generada al hacer clic en el logo.</p>
-
+  <h2>Buscar xxx</h2>
   <form action="{{ url_for('listaxxxs') }}" method="post">
-    <label for="nombre">Buscar xxx:</label>
-    <input type="text" name="nombre" id="nombre" placeholder="Ingresa el nombre del xxx">
+    <label for="nombre">Nombre de xxx:</label>
+    <input
+      type="text"
+      name="nombre"
+      id="nombre"
+      placeholder="Empieza a escribir..."
+      autocomplete="off"
+    >
     <button type="submit">Buscar</button>
   </form>
 {% endblock %}
