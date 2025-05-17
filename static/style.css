@@ -42,3 +42,20 @@ footer {
 .logo:hover {
   transform: scale(1.10); 
 }
+
+table {
+  width: 100%;                /* Ocupa todo el ancho disponible */
+  border-collapse: collapse;  /* Evita doble línea en bordes */
+  margin-bottom: 1.5rem;      /* Separación por debajo */
+}
+
+th, td {
+  padding: 0.75rem 1rem;      /* Espacio interno en celdas */
+  border: 1px solid #ccc;     /* Línea ligera alrededor */
+  text-align: left;           /* Alineación a la izquierda */
+}
+
+th {
+  background-color: #f4f4f4;  /* Color de fondo para cabecera */
+  font-weight: bold;
+}
