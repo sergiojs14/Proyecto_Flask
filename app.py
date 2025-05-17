@@ -5,19 +5,12 @@ import os
 app = Flask(__name__)
 
 def cargar_misiones():
-    try:
-        with open("data.json", 'r', encoding='utf-8') as archivo:
-            misiones = [json.loads(line) for line in archivo if line.strip()]
-        return misiones
-    except FileNotFoundError:
-        print("El fichero no fue encontrado.")
-        return []
-    except json.JSONDecodeError as e:
-        print(f"Error al decodificar JSON: {e}")
-        return []
-
+    ruta = os.path.join(os.path.dirname(__file__), 'data.json')
+    with open(ruta, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 misiones = cargar_misiones()
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -29,16 +22,25 @@ def xxxs():
 @app.route('/listaxxxs', methods=['POST'])
 def listaxxxs():
     nombre_busqueda = request.form.get('nombre', '').strip().lower()
-
-    if nombre_busqueda == '':
-        resultados = misiones  # Muestra todas si no hay búsqueda
+    if not nombre_busqueda:
+        # Si está vacío, mostrar todas
+        resultados = misiones
     else:
+        # Filtrar por coincidencia al inicio (case-insensitive)
         resultados = [
             m for m in misiones
             if m['nombreMision'].lower().startswith(nombre_busqueda)
         ]
 
     return render_template('listaxxxs.html', resultados=resultados)
+
+@app.route('/xxx/<id_mision>')
+def detalle_por_path(id_mision):
+    m = next((x for x in misiones if x['idMision'] == id_mision), None)
+    if not m:
+        abort(404)
+    return render_template('mision.html', mision=m)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
